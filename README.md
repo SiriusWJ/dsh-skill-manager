@@ -2,12 +2,19 @@
 
 DSH Web 的本地技能管理插件。
 
-安装后打开：**设置 → 插件 → 插件配置 → 技能管理**。
+## 界面位置
+
+**设置 → 插件 → 「插件配置」标签页 → 顶部的「技能管理」卡片**
+
+装好并重启 `dsh web` 后就能看到这张卡片：点标题栏展开／收起，卡片内可搜索技能、切换每项技能的模型自动调用开关。
+
+![设置 → 插件 → 插件配置 → 技能管理卡片](assets/screenshot.png)
 
 ## 功能
 
 - 扫描用户技能：`~/.dsh/skills`、`~/.agents/skills`
 - 扫描当前活动工作区：`.dsh/skills`、`.agents/skills`
+- 卡片头样式与官方插件卡片一致，可展开／收起
 - 按名称、描述、路径搜索
 - 启用或禁用技能的模型自动调用
 - 修改后由 DSH 技能目录热刷新，无需重启
@@ -28,7 +35,7 @@ dsh plugin --profile web add github:SiriusWJ/dsh-skill-manager
 dsh plugin --profile web add link:/absolute/path/to/dsh-skill-manager
 ```
 
-安装插件后重启 `dsh web`，客户端模块才会载入。
+安装插件后重启 `dsh web`，客户端模块才会载入。重启后按上面的[界面位置](#界面位置)打开卡片。
 
 ## 安全边界
 
