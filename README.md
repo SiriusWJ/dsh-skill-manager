@@ -1,0 +1,55 @@
+# dsh-skill-manager
+
+DSH Web 的本地技能管理插件。
+
+安装后打开：**设置 → 插件 → 插件配置 → 技能管理**。
+
+## 功能
+
+- 扫描用户技能：`~/.dsh/skills`、`~/.agents/skills`
+- 扫描当前活动工作区：`.dsh/skills`、`.agents/skills`
+- 按名称、描述、路径搜索
+- 启用或禁用技能的模型自动调用
+- 修改后由 DSH 技能目录热刷新，无需重启
+
+“禁用”会把技能 frontmatter 中的 `disable-model-invocation` 设为 `true`。技能仍可通过 `/技能名` 手动调用；重新启用时该字段设为 `false`。
+
+## 安装
+
+从 GitHub 安装：
+
+```sh
+dsh plugin --profile web add github:SiriusWJ/dsh-skill-manager
+```
+
+本地开发安装：
+
+```sh
+dsh plugin --profile web add link:/absolute/path/to/dsh-skill-manager
+```
+
+安装插件后重启 `dsh web`，客户端模块才会载入。
+
+## 安全边界
+
+- API 只接受 loopback 请求。
+- 写操作要求浏览器同源。
+- 客户端提交的路径只作为身份声明；写入前会重新扫描并核对技能名与完整路径。
+- 同名技能按 DSH 官方优先级只显示当前有效项：项目 `.dsh` → 项目 `.agents` → 用户 `.dsh` → 用户 `.agents`。
+- 技能根中的符号链接视为用户主动挂载；启停会跟随链接并原子改写真实目标，即使目标位于技能根之外。
+- 使用临时文件加原子改名更新 `SKILL.md`，避免文件监听器读到半写状态。
+
+## 开发
+
+```sh
+npm install
+npm run verify
+```
+
+## 参考
+
+实现思路参考了 [zhu1090093659/dsh-web 的 dsh-skill-explorer](https://github.com/zhu1090093659/dsh-web/tree/main/packages/dsh-skill-explorer)，本插件只保留“本地技能列表 + 启用/禁用 + 设置页卡片”这条最小路径。
+
+## License
+
+MIT
