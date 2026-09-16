@@ -106,7 +106,9 @@ window.__ModuleLoader__.load({
       var state3 = React.useState("")
       var busy = state3[0]
       var setBusy = state3[1]
-      var state4 = React.useState(true)
+      // Official plugin cards open collapsed; match them so the settings page
+      // reads as one uniform list, and keep the on-count visible in the header.
+      var state4 = React.useState(false)
       var open = state4[0]
       var setOpen = state4[1]
 
